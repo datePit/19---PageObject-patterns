@@ -17,7 +17,7 @@ test ('adding a comp with filled Computer name', async ({page}) => {
   const addcomppage = new addCompPage(page);
   await addcomppage.goto();
 
-  await addcomppage.fillCompName();
+  await addcomppage.fillCompName(randomCompAndTime);
   //await expect(addcomppage.compNameField).toHaveText(randomCompAndTime)
 
   await addcomppage.pressedCreateButton();
@@ -39,8 +39,8 @@ test ('creating a comp without a name causes an error', async ({page}) => {
 test ('creating a comp with not valid intro dates causes an error', async ({page}) => {
   const addcomppage = new addCompPage(page);
   await addcomppage.goto();
-  await addcomppage.fillCompName();
-  await addcomppage.fillWrongIntroDate();
+  await addcomppage.fillCompName(randomCompAndTime);
+  await addcomppage.fillDate('blablabla');
   
   await addcomppage.pressedCreateButton();
   const errorMessage = page.getByText('Failed to decode date : java.time.format.DateTimeParseException: Text')
@@ -50,8 +50,8 @@ test ('creating a comp with not valid intro dates causes an error', async ({page
 test ('creating a comp with not valid discounted dates causes an error', async ({page}) => {
   const addcomppage = new addCompPage(page);
   await addcomppage.goto();
-  await addcomppage.fillCompName();
-  await addcomppage.fillWrongdiscountedDated();
+  await addcomppage.fillCompName(randomCompAndTime);
+  await addcomppage.fillDate('!@#$%^&*()_+');
   
   await addcomppage.pressedCreateButton();
   const errorMessage = page.getByText('Failed to decode date : java.time.format.DateTimeParseException: Text')
