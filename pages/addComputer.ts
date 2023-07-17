@@ -29,21 +29,22 @@ export class addCompPage {
     await expect(this.addCompHeader).toBeVisible();
   }
   
-  async fillCompName() {
-    await this.compNameField.fill(randomCompAndTime);;
+  async fillCompName(compName) {
+    await this.compNameField.fill(compName);
     //await expect(this.compNameField).toHaveText(randomCompAndTime);
   }
 
-  async fillWrongIntroDate() {
-    await this.introducedDate.fill('1990-01-01!!!');
+  async fillDate(dates) {
+    await this.introducedDate.fill(dates);
     //await expect(this.introducedDate).toHaveText(/1990-01-01/);
   }
-
+/* 
+  // 
   async fillIntroDate() {
     await this.introducedDate.fill('1990-01-01');
     await expect(this.introducedDate).toHaveText(/1990-01-01/);
   }
-
+ 
   async filldiscountedDated() {
     await this.discounted.fill('2020-12-12');
     await expect(this.discounted).toHaveText(/2020-12-12/);
@@ -53,7 +54,8 @@ export class addCompPage {
     await this.discounted.fill('2020-12-12asd');
     //await expect(this.discounted).toHaveText(/2020-12-12/);
   }
-
+  */
+ 
   async selectedCompany() {
     await this.company.selectOption('15');
     await expect(this.company).toHaveText(/Canon/);
